@@ -115,6 +115,65 @@ Create Dockerfiles for each service and set up a Docker Swarm for clustering.
 
 Add JWT-based authentication to the user authentication service and protect the necessary endpoints in other services.
 
+## Running the Microservices
+
+### Running Locally
+
+#### Prerequisites
+
+- Python 3.8 or higher
+- MongoDB installed and running on `localhost:27017`
+- `pip` for installing Python packages
+
+#### Steps
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone <repository_url>
+   cd ecommerce_microservices
+   ```
+
+2. **Install Dependencies**
+
+   For each service, navigate to its directory and install the required dependencies:
+
+   ```bash
+   cd auth_service
+   pip install -r requirements.txt
+   ```
+
+   ```bash
+   cd product_service
+   pip install -r requirements.txt
+   ```
+
+   ```bash
+   cd order_service
+   pip install -r requirements.txt
+   ```
+
+3. **Run the Services**
+
+   Start each Flask service in separate terminal windows:
+
+   ```bash
+   cd auth_service
+   python app.py
+   ```
+
+   ```bash
+   cd product_service
+   python app.py
+   ```
+
+   ```bash
+   cd order_service
+   python app.py
+   ```
+
+   Each service will run on its default port (e.g., `auth_service` on port 5000, `product_service` on port 5001, and `order_service` on port 5002). You can interact with the APIs using tools like Postman or curl.
+
 ## Deployment Instructions
 
 ### Clone the Repository
