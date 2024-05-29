@@ -131,7 +131,7 @@ Add JWT-based authentication to the user authentication service and protect the 
 
    ```bash
    git clone <repository_url>
-   cd ecommerce_microservices
+   cd E-Commerce-Microservices-System
    ```
 
 2. **Install Dependencies**
