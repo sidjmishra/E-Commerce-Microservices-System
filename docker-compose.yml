@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
+
+  auth_service:
+    build: ./auth_service
+    container_name: auth_service
+    environment:
+      - MONGO_URI=mongodb://root:example@mongo:27017/auth_db?authSource=admin
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  product_service:
+    build: ./product_service
+    container_name: product_service
+    environment:
+      - MONGO_URI=mongodb://root:example@mongo:27017/product_db?authSource=admin
+    ports:
+      - "5001:5001"
+    depends_on:
+      - mongo
+
+  order_service:
+    build: ./order_service
+    container_name: order_service
+    environment:
+      - MONGO_URI=mongodb://root:example@mongo:27017/order_db?authSource=admin
+    ports:
+      - "5002:5002"
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
